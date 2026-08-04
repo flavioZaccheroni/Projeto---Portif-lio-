@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     images: [
       {
-        url: "/og.png",
+        url: "/brand/identidade-flavio-zaccheroni.png",
         width: 1200,
         height: 630,
         alt: "Flávio H. Zaccheroni — Logística e Desenvolvimento de Sistemas",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Flávio H. Zaccheroni | Desenvolvedor de Sistemas",
     description:
       "Soluções digitais para processos operacionais e problemas reais de negócio.",
-    images: ["/og.png"],
+    images: ["/brand/identidade-flavio-zaccheroni.png"],
   },
 };
 

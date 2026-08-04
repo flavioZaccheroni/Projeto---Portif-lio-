@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Boxes, Code2, Route, TestTube2 } from "lucide-react";
 import { ProjectCard } from "@/components/projects/project-card";
@@ -31,23 +32,32 @@ const process = [
 export default function Home() {
   return (
     <main>
-      <section className="relative overflow-hidden bg-[#0f2538] py-20 text-white sm:py-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(37,99,235,0.35),transparent_35%)]" />
-        <Container className="relative grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-          <div>
-            <p className="mb-5 text-sm font-bold tracking-[0.2em] text-blue-300 uppercase">
-              Logística + desenvolvimento de sistemas
-            </p>
-            <h1 className="max-w-4xl text-4xl leading-tight font-extrabold tracking-tight text-balance sm:text-6xl">
-              Transformo processos operacionais em soluções digitais
-              organizadas.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+      <section
+        aria-labelledby="apresentacao"
+        className="overflow-hidden bg-[#06172b] text-white"
+      >
+        <h1 id="apresentacao" className="sr-only">
+          Flávio H. Zaccheroni — Logística e Desenvolvimento de Sistemas
+        </h1>
+        <div className="mx-auto max-w-[1920px]">
+          <Image
+            src="/brand/identidade-flavio-zaccheroni.png"
+            alt="Identidade de Flávio H. Zaccheroni, conectando gestão, nutrição, logística e inteligência artificial"
+            width={1920}
+            height={1077}
+            priority
+            sizes="100vw"
+            className="h-auto w-full"
+          />
+        </div>
+        <div className="border-t border-white/10 bg-[#0f2538]">
+          <Container className="grid items-center gap-8 py-10 lg:grid-cols-[1fr_auto] lg:py-12">
+            <p className="max-w-3xl text-lg leading-8 text-slate-300">
               Minha experiência em Logística e minha formação em Análise e
               Desenvolvimento de Sistemas orientam projetos voltados a problemas
               reais de negócio.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/projetos"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 font-bold text-white transition hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-300"
@@ -62,32 +72,8 @@ export default function Home() {
                 Entrar em contato
               </Link>
             </div>
-          </div>
-          <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-8">
-            <p className="text-sm font-bold tracking-[0.16em] text-blue-300 uppercase">
-              Em construção
-            </p>
-            <p className="mt-3 text-3xl font-extrabold">4 soluções</p>
-            <p className="mt-2 leading-7 text-slate-300">
-              Autopeças, nutrição, logística e inteligência artificial — cada
-              projeto apresentado como resposta a um problema.
-            </p>
-            <dl className="mt-7 grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
-              <div>
-                <dt className="text-xs tracking-wider text-slate-400 uppercase">
-                  Base
-                </dt>
-                <dd className="mt-1 font-bold">Três Lagoas, MS</dd>
-              </div>
-              <div>
-                <dt className="text-xs tracking-wider text-slate-400 uppercase">
-                  Foco
-                </dt>
-                <dd className="mt-1 font-bold">Sistemas de negócio</dd>
-              </div>
-            </dl>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </section>
 
       <section className="py-20 sm:py-24">
