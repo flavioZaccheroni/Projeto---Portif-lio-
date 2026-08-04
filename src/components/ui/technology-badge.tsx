@@ -1,0 +1,7 @@
+export function TechnologyBadge({ children }: React.PropsWithChildren) {
+  return (
+    <span className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
+      {children}
+    </span>
+  );
+}
