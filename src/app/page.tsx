@@ -39,7 +39,7 @@ export default function Home() {
         <h1 id="apresentacao" className="sr-only">
           Flávio H. Zaccheroni — Logística e Desenvolvimento de Sistemas
         </h1>
-        <div className="mx-auto max-w-[1920px]">
+        <div className="mx-auto flex max-w-[1920px] items-center justify-center px-4 py-3 sm:px-6 sm:py-4">
           <Image
             src="/brand/identidade-flavio-zaccheroni.png"
             alt="Identidade de Flávio H. Zaccheroni, conectando gestão, nutrição, logística e inteligência artificial"
@@ -47,7 +47,7 @@ export default function Home() {
             height={1077}
             priority
             sizes="100vw"
-            className="h-auto w-full"
+            className="h-auto max-h-[calc(100svh-15rem)] w-auto max-w-full object-contain"
           />
         </div>
         <div className="border-t border-white/10 bg-[#0f2538]">
