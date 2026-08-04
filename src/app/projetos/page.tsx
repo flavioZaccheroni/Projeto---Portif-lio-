@@ -6,7 +6,7 @@ import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projetos",
-  description: "Conheça os sistemas desenvolvidos por Flávio Henrique.",
+  description: "Conheça os sistemas desenvolvidos por Flávio H. Zaccheroni.",
 };
 
 export default function ProjectsPage() {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/brand-logo";
 import { Container } from "@/components/ui/container";
 
 const navigation = [
@@ -14,9 +15,10 @@ export function Header() {
       <Container className="flex min-h-16 items-center justify-between gap-6">
         <Link
           href="/"
-          className="rounded-sm text-base font-extrabold tracking-tight text-slate-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+          aria-label="Flávio H. Zaccheroni — página inicial"
+          className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
         >
-          Flávio Henrique<span className="text-blue-600">.</span>
+          <BrandLogo className="text-sm sm:text-base" />
         </Link>
         <nav aria-label="Navegação principal" className="hidden sm:block">
           <ul className="flex items-center gap-1">

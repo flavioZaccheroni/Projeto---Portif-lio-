@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
   title: {
-    default: "Flávio Henrique | Desenvolvedor de Sistemas",
-    template: "%s | Flávio Henrique",
+    default: "Flávio H. Zaccheroni | Desenvolvedor de Sistemas",
+    template: "%s | Flávio H. Zaccheroni",
   },
   description:
     "Portfólio de sistemas para logística, autopeças, nutrição e automação.",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "Três Lagoas",
   ],
   openGraph: {
-    title: "Flávio Henrique | Desenvolvedor de Sistemas",
+    title: "Flávio H. Zaccheroni | Desenvolvedor de Sistemas",
     description:
       "Soluções digitais para processos operacionais e problemas reais de negócio.",
     type: "website",
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Flávio Henrique — Logística e Desenvolvimento de Sistemas",
+        alt: "Flávio H. Zaccheroni — Logística e Desenvolvimento de Sistemas",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Flávio Henrique | Desenvolvedor de Sistemas",
+    title: "Flávio H. Zaccheroni | Desenvolvedor de Sistemas",
     description:
       "Soluções digitais para processos operacionais e problemas reais de negócio.",
     images: ["/og.png"],

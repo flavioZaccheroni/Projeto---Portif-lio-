@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export const metadata: Metadata = {
   title: "Contato",
-  description: "Entre em contato com Flávio Henrique.",
+  description: "Entre em contato com Flávio H. Zaccheroni.",
 };
 
 const contacts = [

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/brand-logo";
 import { Container } from "@/components/ui/container";
 
 export function Footer() {
@@ -6,7 +7,9 @@ export function Footer() {
     <footer className="bg-[#17324D] py-12 text-white">
       <Container className="grid gap-8 sm:grid-cols-2 sm:items-end">
         <div>
-          <p className="text-xl font-extrabold">Flávio Henrique Zacaroni</p>
+          <p>
+            <BrandLogo inverse className="text-xl" />
+          </p>
           <p className="mt-2 max-w-md text-sm leading-6 text-blue-100">
             Logística, análise de processos e desenvolvimento de sistemas para
             problemas reais de negócio.
@@ -25,7 +28,7 @@ export function Footer() {
             </Link>
           </div>
           <p className="mt-4 text-xs text-blue-200">
-            © {new Date().getFullYear()} Flávio Henrique. Todos os direitos
+            © {new Date().getFullYear()} Flávio H. Zaccheroni. Todos os direitos
             reservados.
           </p>
         </div>

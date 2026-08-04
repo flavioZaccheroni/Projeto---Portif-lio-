@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export const metadata: Metadata = {
   title: "Sobre",
-  description: "Conheça a trajetória profissional de Flávio Henrique.",
+  description: "Conheça a trajetória profissional de Flávio H. Zaccheroni.",
 };
 
 const story = [

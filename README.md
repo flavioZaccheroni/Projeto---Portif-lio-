@@ -1,4 +1,4 @@
-# Portfólio profissional — Flávio Henrique
+# Portfólio profissional — Flávio H. Zaccheroni
 
 Primeira versão do portfólio descrito no manual de desenvolvimento. O projeto apresenta a transição de Logística para Análise e Desenvolvimento de Sistemas por meio de estudos de caso.
 
