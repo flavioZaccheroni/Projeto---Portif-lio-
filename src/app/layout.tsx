@@ -27,6 +27,21 @@ export const metadata: Metadata = {
       "Soluções digitais para processos operacionais e problemas reais de negócio.",
     type: "website",
     locale: "pt_BR",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Flávio Henrique — Logística e Desenvolvimento de Sistemas",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Flávio Henrique | Desenvolvedor de Sistemas",
+    description:
+      "Soluções digitais para processos operacionais e problemas reais de negócio.",
+    images: ["/og.png"],
   },
 };
 
