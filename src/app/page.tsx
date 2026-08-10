@@ -42,7 +42,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-[1920px] items-center justify-center px-4 py-3 sm:px-6 sm:py-4">
           <Image
             src="/brand/identidade-flavio-zaccheroni.png"
-            alt="Identidade de Flávio H. Zaccheroni, conectando gestão, nutrição, logística e inteligência artificial"
+            alt="Identidade visual de Flávio H. Zaccheroni para logística e desenvolvimento de sistemas"
             width={1920}
             height={1077}
             priority

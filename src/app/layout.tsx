@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Flávio H. Zaccheroni",
   },
   description:
-    "Portfólio de sistemas para logística, autopeças, nutrição e automação.",
+    "Portfólio de sistemas para logística, autopeças, nutrição e operações.",
   keywords: [
     "desenvolvimento de sistemas",
     "logística",
