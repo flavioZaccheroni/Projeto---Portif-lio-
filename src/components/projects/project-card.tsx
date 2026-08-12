@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { StatusBadge } from "@/components/ui/status-badge";
@@ -5,11 +6,26 @@ import { TechnologyBadge } from "@/components/ui/technology-badge";
 import type { Project } from "@/types/project";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const coverImage = project.screenshots[1] ?? project.screenshots[0];
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className="relative flex min-h-40 items-end overflow-hidden bg-gradient-to-br from-[#17324D] via-[#1d4f7a] to-blue-600 p-6 text-white">
-        <div className="absolute -top-10 -right-8 h-36 w-36 rounded-full border border-white/20" />
-        <div className="absolute -top-4 -right-2 h-20 w-20 rounded-full bg-white/10" />
+      <div className="relative flex min-h-48 items-end overflow-hidden bg-gradient-to-br from-[#17324D] via-[#1d4f7a] to-blue-600 p-6 text-white">
+        {coverImage ? (
+          <Image
+            src={coverImage.src}
+            alt={coverImage.alt}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <>
+            <div className="absolute -top-10 -right-8 h-36 w-36 rounded-full border border-white/20" />
+            <div className="absolute -top-4 -right-2 h-20 w-20 rounded-full bg-white/10" />
+          </>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f2538]/95 via-[#0f2538]/20 to-transparent" />
         <p className="relative text-sm font-bold tracking-[0.16em] text-blue-100 uppercase">
           {project.category}
         </p>

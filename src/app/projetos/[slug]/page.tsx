@@ -236,7 +236,7 @@ export default async function ProjectPage({
           <CaseSection
             eyebrow="Evidências visuais"
             title="Telas e demonstrações"
-            description="As imagens desta seção precisam mostrar o sistema real com dados seguros para publicação."
+            description="As imagens apresentam os principais ambientes e fluxos de cada solução com dados adequados para divulgação."
           >
             {project.screenshots.length ? (
               <div className="grid gap-6 md:grid-cols-2">

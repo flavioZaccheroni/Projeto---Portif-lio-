@@ -77,7 +77,43 @@ export const projects: Project[] = [
       "Criar relatórios, autenticação e permissões",
       "Gerar pacote demonstrativo com dados fictícios",
     ],
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/projects/erp-crm-autopecas/01-login.png",
+        alt: "Tela de acesso do ERP/CRM para autopeças e serviços",
+        caption: "Acesso inicial ao ambiente de gestão.",
+      },
+      {
+        src: "/projects/erp-crm-autopecas/02-dashboard.png",
+        alt: "Dashboard operacional do ERP/CRM",
+        caption: "Visão geral dos principais indicadores da operação.",
+      },
+      {
+        src: "/projects/erp-crm-autopecas/03-produtos.png",
+        alt: "Tela de cadastro e consulta de produtos",
+        caption: "Gestão do catálogo de produtos e peças.",
+      },
+      {
+        src: "/projects/erp-crm-autopecas/04-estoque.png",
+        alt: "Tela de controle de estoque do ERP/CRM",
+        caption: "Acompanhamento das quantidades e movimentações de estoque.",
+      },
+      {
+        src: "/projects/erp-crm-autopecas/05-vendas.png",
+        alt: "Tela de vendas do ERP/CRM",
+        caption: "Registro e acompanhamento das vendas realizadas.",
+      },
+      {
+        src: "/projects/erp-crm-autopecas/06-ordem-de-servico.png",
+        alt: "Tela de ordem de serviço do ERP/CRM",
+        caption: "Organização dos serviços, itens utilizados e valores.",
+      },
+      {
+        src: "/projects/erp-crm-autopecas/07-relatorios.png",
+        alt: "Tela de relatórios gerenciais do ERP/CRM",
+        caption: "Relatórios para apoiar o acompanhamento da empresa.",
+      },
+    ],
     evidenceNote:
       "As capturas reais do dashboard, clientes e ordem de serviço serão adicionadas depois da anonimização dos dados.",
     featured: true,
@@ -157,7 +193,44 @@ export const projects: Project[] = [
       "Concluir relatórios de evolução",
       "Preparar versão de testes com pacientes fictícios",
     ],
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/projects/sistema-nutricionistas/01-login.png",
+        alt: "Tela de acesso do Nutri Clinic Pro",
+        caption: "Entrada segura no ambiente de acompanhamento nutricional.",
+      },
+      {
+        src: "/projects/sistema-nutricionistas/02-dashboard.png",
+        alt: "Dashboard do Nutri Clinic Pro",
+        caption: "Resumo da rotina clínica e dos acompanhamentos.",
+      },
+      {
+        src: "/projects/sistema-nutricionistas/03-pacientes.png",
+        alt: "Tela de pacientes do Nutri Clinic Pro",
+        caption: "Cadastro e consulta dos pacientes acompanhados.",
+      },
+      {
+        src: "/projects/sistema-nutricionistas/04-agenda.png",
+        alt: "Agenda de atendimentos do Nutri Clinic Pro",
+        caption: "Organização das consultas e dos compromissos clínicos.",
+      },
+      {
+        src: "/projects/sistema-nutricionistas/05-antropometria.png",
+        alt: "Tela de avaliação antropométrica do Nutri Clinic Pro",
+        caption:
+          "Registro das medidas utilizadas no acompanhamento da evolução.",
+      },
+      {
+        src: "/projects/sistema-nutricionistas/06-plano-alimentar.png",
+        alt: "Tela de plano alimentar do Nutri Clinic Pro",
+        caption: "Montagem e organização do planejamento alimentar.",
+      },
+      {
+        src: "/projects/sistema-nutricionistas/07-protocolos-clinicos.png",
+        alt: "Tela de protocolos clínicos do Nutri Clinic Pro",
+        caption: "Consulta e aplicação dos protocolos de acompanhamento.",
+      },
+    ],
     evidenceNote:
       "As telas serão publicadas somente com perfis e avaliações inteiramente fictícios.",
     featured: true,
