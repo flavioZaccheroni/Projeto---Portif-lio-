@@ -1,6 +1,20 @@
+import { Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { Container } from "@/components/ui/container";
+
+const socialLinks = [
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/flavio-h-zaccheroni-99101365",
+  },
+  {
+    icon: Github,
+    label: "GitHub",
+    href: "https://github.com/flavioZaccheroni",
+  },
+];
 
 export function Footer() {
   return (
@@ -14,6 +28,20 @@ export function Footer() {
             Logística, análise de processos e desenvolvimento de sistemas para
             problemas reais de negócio.
           </p>
+          <div className="mt-4 flex gap-3">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={social.label}
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 text-blue-100 transition hover:border-white/40 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
+              >
+                <social.icon aria-hidden="true" className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
         </div>
         <div className="sm:text-right">
           <div className="flex flex-wrap gap-4 text-sm font-semibold sm:justify-end">
@@ -25,6 +53,9 @@ export function Footer() {
             </Link>
             <Link href="/contato" className="hover:text-blue-200">
               Contato
+            </Link>
+            <Link href="/termos-de-teste" className="hover:text-blue-200">
+              Termos de teste
             </Link>
           </div>
           <p className="mt-4 text-xs text-blue-200">

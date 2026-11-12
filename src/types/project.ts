@@ -1,4 +1,4 @@
-export type ProjectStatus = "em-desenvolvimento" | "em-testes" | "concluido";
+export type ProjectStatus = "disponivel-para-teste" | "em-desenvolvimento";
 
 export interface ProjectDetail {
   title: string;
@@ -9,6 +9,12 @@ export interface ProjectScreenshot {
   src: string;
   alt: string;
   caption: string;
+}
+
+export interface DemoLogin {
+  profile: string;
+  user: string;
+  password: string;
 }
 
 export interface Project {
@@ -33,8 +39,23 @@ export interface Project {
   nextSteps: string[];
   screenshots: ProjectScreenshot[];
   evidenceNote: string;
+  /** GIF curto mostrando o fluxo do sistema. */
+  demo?: { src: string; alt: string; caption: string };
+  /** Texto mostrado quando não há link público do código. */
+  codeNote?: string;
+  /** Aviso adicional exibido junto ao estágio (ex.: estimativas fiscais). */
+  extraNotice?: string;
   repositoryUrl?: string;
-  demoUrl?: string;
-  downloadUrl?: string;
+  /** Presente só em projetos disponíveis para teste. */
+  test?: {
+    version: string;
+    downloadUrl: string;
+    releaseUrl: string;
+    fileName: string;
+    sizeLabel: string;
+    logins: DemoLogin[];
+    requirements: string[];
+    steps: string[];
+  };
   featured: boolean;
 }

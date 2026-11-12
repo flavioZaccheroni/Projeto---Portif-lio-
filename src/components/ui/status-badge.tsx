@@ -4,17 +4,15 @@ const statusConfig: Record<
   ProjectStatus,
   { label: string; className: string }
 > = {
+  "disponivel-para-teste": {
+    label: "Disponível para teste",
+    className:
+      "bg-emerald-50 text-emerald-800 ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30",
+  },
   "em-desenvolvimento": {
     label: "Em desenvolvimento",
-    className: "bg-amber-50 text-amber-800 ring-amber-200",
-  },
-  "em-testes": {
-    label: "Em testes",
-    className: "bg-blue-50 text-blue-800 ring-blue-200",
-  },
-  concluido: {
-    label: "Concluído",
-    className: "bg-emerald-50 text-emerald-800 ring-emerald-200",
+    className:
+      "bg-amber-50 text-amber-800 ring-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:ring-amber-500/30",
   },
 };
 

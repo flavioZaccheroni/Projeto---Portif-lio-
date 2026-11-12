@@ -5,13 +5,13 @@ export default function NotFound() {
   return (
     <main className="flex min-h-[60vh] items-center py-20">
       <Container className="text-center">
-        <p className="text-sm font-extrabold tracking-[0.2em] text-blue-700 uppercase">
+        <p className="text-sm font-extrabold tracking-[0.2em] text-blue-700 uppercase dark:text-blue-400">
           Erro 404
         </p>
-        <h1 className="mt-3 text-4xl font-extrabold text-slate-950">
+        <h1 className="mt-3 text-4xl font-extrabold text-slate-950 dark:text-white">
           Página não encontrada
         </h1>
-        <p className="mx-auto mt-4 max-w-lg text-lg leading-8 text-slate-600">
+        <p className="mx-auto mt-4 max-w-lg text-lg leading-8 text-slate-600 dark:text-slate-400">
           O endereço pode ter mudado ou ainda não está disponível.
         </p>
         <Link

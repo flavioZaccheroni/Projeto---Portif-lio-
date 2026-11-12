@@ -16,7 +16,7 @@ export default function ProjectsPage() {
         <SectionHeading
           eyebrow="Portfólio"
           title="Projetos e estudos de caso"
-          description="Cada projeto começa por um contexto operacional, apresenta as escolhas realizadas e mantém o status da entrega de forma transparente."
+          description="Projetos de portfólio para demonstração e testes. Cada um mostra o contexto, as escolhas técnicas e o estágio real da entrega."
         />
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {projects.map((project) => (
