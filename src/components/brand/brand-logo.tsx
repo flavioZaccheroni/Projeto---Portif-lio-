@@ -10,7 +10,7 @@ export function BrandLogo({ className, inverse = false }: BrandLogoProps) {
     <span
       className={cn(
         "font-extrabold tracking-tight",
-        inverse ? "text-white" : "text-slate-950",
+        inverse ? "text-white" : "text-slate-950 dark:text-white",
         className,
       )}
     >

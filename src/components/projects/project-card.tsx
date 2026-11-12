@@ -9,7 +9,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const coverImage = project.screenshots[1] ?? project.screenshots[0];
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
       <div className="relative flex min-h-48 items-end overflow-hidden bg-gradient-to-br from-[#17324D] via-[#1d4f7a] to-blue-600 p-6 text-white">
         {coverImage ? (
           <Image
@@ -34,10 +34,10 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="mb-4">
           <StatusBadge status={project.status} />
         </div>
-        <h3 className="text-xl font-bold tracking-tight text-slate-950">
+        <h3 className="text-xl font-bold tracking-tight text-slate-950 dark:text-white">
           {project.name}
         </h3>
-        <p className="mt-3 flex-1 leading-7 text-slate-600">
+        <p className="mt-3 flex-1 leading-7 text-slate-600 dark:text-slate-400">
           {project.shortDescription}
         </p>
         <div className="mt-5 flex flex-wrap gap-2">
@@ -47,7 +47,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
         <Link
           href={`/projetos/${project.slug}`}
-          className="mt-6 inline-flex w-fit items-center gap-2 rounded-md font-bold text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+          className="mt-6 inline-flex w-fit items-center gap-2 rounded-md font-bold text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:text-blue-400"
         >
           Ver estudo de caso{" "}
           <ArrowUpRight

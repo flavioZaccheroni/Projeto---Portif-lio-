@@ -1,318 +1,399 @@
 import type { Project } from "@/types/project";
 
+export const TEST_PERIOD_DAYS = 30;
+export const CONTACT_EMAIL = "contato@flaviozaccheroni.com.br";
+
+const erpImages = "/projects/erp-crm-autopecas";
+
 export const projects: Project[] = [
   {
     slug: "erp-crm-autopecas",
     name: "ERP/CRM para Autopeças e Serviços",
     category: "Gestão empresarial",
     shortDescription:
-      "Gestão integrada de clientes, estoque, serviços e financeiro.",
+      "Sistema desktop de gestão para autopeças e oficinas, do cadastro ao financeiro.",
     description:
-      "Aplicação desktop modular para organizar a operação de empresas de serviços automotivos em um único ambiente.",
+      "Aplicativo Windows que reúne cadastros, estoque, compras, vendas com orçamento, ordens de serviço, financeiro e relatórios em um só lugar, com controle de acesso por perfil, auditoria e backup.",
     problem:
-      "Informações de clientes, peças, estoque, serviços e financeiro ficam espalhadas em controles separados, dificultando decisões e aumentando o risco de erros.",
+      "Em autopeças e oficinas, clientes, peças, estoque, serviços e contas ficam em planilhas e cadernos separados. Falta rastreio do que entrou e saiu, e qualquer pessoa vê tudo.",
     solution:
-      "Uma aplicação desktop dividida em módulos, com persistência local e fluxos conectados entre ordem de serviço, estoque e visão gerencial.",
+      "Um único sistema em que os módulos conversam: a compra entra no estoque e gera a conta a pagar; a venda baixa o estoque e gera a conta a receber; a ordem de serviço baixa as peças e lança o financeiro. Cada perfil só enxerga e faz o que lhe cabe.",
     objective:
-      "Centralizar a rotina da empresa e reduzir retrabalho, mantendo o histórico de clientes, produtos e serviços em uma única base.",
+      "Centralizar a rotina da empresa e reduzir retrabalho e erro, com um histórico confiável de clientes, produtos, serviços e valores.",
     audience:
       "Autopeças, oficinas e pequenos prestadores de serviços automotivos.",
     currentStage:
-      "Os fluxos centrais já podem ser demonstrados. A próxima etapa é preparar uma distribuição segura com dados fictícios.",
-    status: "em-desenvolvimento",
-    technologies: ["Python", "Tkinter", "SQLAlchemy", "SQLite"],
+      "Versão 3.0 concluída e testada, pronta para avaliação com dados de demonstração. Próximos passos: assinatura digital do executável e instalador.",
+    status: "disponivel-para-teste",
+    technologies: [
+      "Python",
+      "PySide6 (Qt)",
+      "SQLAlchemy",
+      "SQLite",
+      "Alembic",
+      "PyInstaller",
+      "pytest",
+      "GitHub Actions",
+    ],
     features: [
-      "Cadastro e histórico de clientes",
-      "Controle de produtos e estoque",
-      "Ordens de serviço com baixa automática",
-      "Dashboard operacional e financeiro",
+      "Cadastros de clientes, veículos, fornecedores, categorias, marcas e produtos, com validação de CPF/CNPJ, placa, UF e telefone",
+      "Estoque com histórico de movimentações e alerta de estoque mínimo",
+      "Compras com entrada no estoque e conta a pagar parcelável; cancelamento com estorno",
+      "Vendas: orçamento, aprovação e venda, com parcelamento e forma de pagamento",
+      "Ordens de serviço com peças e mão de obra, finalização com baixa e financeiro, impressão em PDF",
+      "Financeiro: contas a pagar e a receber, baixa, estorno e caixa",
+      "Relatórios em PDF e Excel",
+      "Dashboard com indicadores e gráficos; tema claro e escuro; paleta de comandos (Ctrl+K)",
+      "Segurança: perfis e permissões, troca de senha obrigatória, bloqueio por tentativas, auditoria, backup e restauração validados",
+    ],
+    challenges: [
+      "Manter estoque e financeiro consistentes quando uma venda, compra ou OS é criada, alterada ou cancelada.",
+      "Aplicar permissões e auditoria em toda escrita, sem depender da tela.",
+      "Trocar toda a interface (Tkinter para PySide6) sem mexer nas regras de negócio.",
+      "Empacotar um executável Windows que realmente abre: o v2.0.0 teve esse problema e o v2.0.1 passou a ter autoteste no CI.",
     ],
     architecture: [
       {
-        title: "Interface desktop",
+        title: "Interface",
         description:
-          "Telas em Tkinter organizadas por área operacional e conectadas aos serviços da aplicação.",
+          "PySide6 com tema claro e escuro, componentes reutilizáveis, formulários por especificação e páginas por módulo. Não contém regra de negócio.",
       },
       {
-        title: "Regras de negócio",
+        title: "Controllers e serviços",
         description:
-          "Fluxos de clientes, produtos e ordens de serviço mantidos fora da camada visual.",
+          "Controllers aplicam permissão, auditoria e transação; serviços guardam as regras de estoque, financeiro, vendas, OS e compras.",
       },
       {
-        title: "Persistência local",
+        title: "Dados",
         description:
-          "SQLAlchemy centraliza o acesso ao SQLite e prepara a evolução do modelo de dados.",
+          "Repositórios sobre SQLAlchemy e SQLite, com migrações versionadas pelo Alembic e valores monetários em Decimal.",
       },
     ],
     decisions: [
       {
-        title: "Aplicação desktop primeiro",
+        title: "Interface separada das regras",
         description:
-          "A operação precisa funcionar localmente e com baixa dependência de infraestrutura externa.",
+          "Como a interface não tem regra de negócio, foi possível trocar o Tkinter pelo PySide6 sem alterar as camadas de baixo.",
       },
       {
-        title: "Dados relacionais",
+        title: "Migrações sem perda de dados",
         description:
-          "Clientes, produtos, itens e ordens exigem consistência e relacionamentos explícitos.",
+          "Bancos de versões antigas são atualizados automaticamente pelo Alembic ao abrir o sistema.",
+      },
+      {
+        title: "Segurança no controller",
+        description:
+          "Permissões e auditoria ficam em decorators dos controllers, valendo para qualquer interface; senhas usam PBKDF2.",
+      },
+      {
+        title: "Executável validado no CI",
+        description:
+          "O build roda no GitHub Actions e o .exe é aberto em um autoteste (banco via Alembic e Qt iniciando) antes de ser publicado.",
       },
     ],
     results: [
-      "CRUD de clientes disponível para demonstração",
-      "Ordem de serviço conectada aos itens utilizados",
-      "Baixa automática de estoque no fluxo da OS",
-      "Dashboard com visão resumida da operação",
-    ],
-    challenges: [
-      "Sincronizar itens das ordens de serviço com o estoque",
-      "Evoluir o esquema do banco sem comprometer dados existentes",
-      "Manter telas e regras de negócio desacopladas",
+      "101 testes automatizados, lint com ruff e CI no GitHub Actions",
+      "4 releases publicados, de v2.0.0 a v3.0.1",
+      "Interface totalmente nova em PySide6, com tema claro e escuro",
+      "Pacote Windows com base de demonstração fictícia incluída",
     ],
     learnings: [
-      "Regras críticas precisam estar protegidas da lógica das telas.",
-      "Alterações no banco exigem planejamento mesmo em aplicações locais.",
-      "Dados de demonstração devem ser separados dos dados usados no desenvolvimento.",
+      "Testar o executável empacotado, e não só o código.",
+      "Separar a interface das regras compensa quando é hora de redesenhar.",
+      "Testes de interface precisam cuidar do ciclo de vida dos widgets Qt.",
     ],
     nextSteps: [
-      "Adicionar fornecedores e compras",
-      "Criar relatórios, autenticação e permissões",
-      "Gerar pacote demonstrativo com dados fictícios",
+      "Assinatura de código do executável",
+      "Instalador para Windows",
+      "Uso em rede com vários usuários",
     ],
     screenshots: [
       {
-        src: "/projects/erp-crm-autopecas/01-login.png",
-        alt: "Tela de acesso do ERP/CRM para autopeças e serviços",
-        caption: "Acesso inicial ao ambiente de gestão.",
+        src: `${erpImages}/01-login.png`,
+        alt: "Tela de login do ERP com painel de apresentação",
+        caption: "Login com apresentação do sistema.",
       },
       {
-        src: "/projects/erp-crm-autopecas/02-dashboard.png",
-        alt: "Dashboard operacional do ERP/CRM",
-        caption: "Visão geral dos principais indicadores da operação.",
+        src: `${erpImages}/02-dashboard.png`,
+        alt: "Dashboard do ERP com indicadores, gráfico de faturamento e alertas",
+        caption: "Dashboard com faturamento, ordens em aberto, saldo e alertas.",
       },
       {
-        src: "/projects/erp-crm-autopecas/03-produtos.png",
-        alt: "Tela de cadastro e consulta de produtos",
-        caption: "Gestão do catálogo de produtos e peças.",
+        src: `${erpImages}/03-dashboard-escuro.png`,
+        alt: "Dashboard do ERP no tema escuro",
+        caption: "O mesmo dashboard no tema escuro.",
       },
       {
-        src: "/projects/erp-crm-autopecas/04-estoque.png",
-        alt: "Tela de controle de estoque do ERP/CRM",
-        caption: "Acompanhamento das quantidades e movimentações de estoque.",
+        src: `${erpImages}/04-clientes.png`,
+        alt: "Listagem de clientes com busca e exportação",
+        caption: "Cadastros com busca que ignora acentos, ordenação e exportação CSV.",
       },
       {
-        src: "/projects/erp-crm-autopecas/05-vendas.png",
-        alt: "Tela de vendas do ERP/CRM",
-        caption: "Registro e acompanhamento das vendas realizadas.",
+        src: `${erpImages}/05-produtos.png`,
+        alt: "Cadastro de produto com painel lateral de edição",
+        caption: "Cadastro de produtos com painel lateral e validação de campos.",
       },
       {
-        src: "/projects/erp-crm-autopecas/06-ordem-de-servico.png",
-        alt: "Tela de ordem de serviço do ERP/CRM",
-        caption: "Organização dos serviços, itens utilizados e valores.",
+        src: `${erpImages}/06-estoque.png`,
+        alt: "Controle de estoque com saldo e movimentações",
+        caption: "Saldo, movimentações e alerta de estoque mínimo.",
       },
       {
-        src: "/projects/erp-crm-autopecas/07-relatorios.png",
-        alt: "Tela de relatórios gerenciais do ERP/CRM",
-        caption: "Relatórios para apoiar o acompanhamento da empresa.",
+        src: `${erpImages}/07-compras.png`,
+        alt: "Tela de compras com itens e etapas",
+        caption: "Compras com recebimento, entrada no estoque e conta a pagar.",
+      },
+      {
+        src: `${erpImages}/08-vendas.png`,
+        alt: "Tela de vendas com orçamento, itens e etapas",
+        caption: "Do orçamento à venda finalizada, com itens e etapas.",
+      },
+      {
+        src: `${erpImages}/09-ordem-de-servico.png`,
+        alt: "Ordem de serviço com peças, mão de obra e status",
+        caption: "Ordens de serviço com peças, mão de obra e acompanhamento de status.",
+      },
+      {
+        src: `${erpImages}/10-financeiro.png`,
+        alt: "Financeiro com contas a pagar e a receber e caixa",
+        caption: "Contas a pagar e a receber, baixa, estorno e caixa.",
+      },
+      {
+        src: `${erpImages}/11-seguranca-backup.png`,
+        alt: "Tela de segurança com backup e restauração",
+        caption: "Backup e restauração validados, com auditoria.",
+      },
+      {
+        src: `${erpImages}/12-permissoes.png`,
+        alt: "Matriz de permissões por perfil e módulo",
+        caption: "Permissões por perfil e módulo (ver, criar, editar, excluir).",
       },
     ],
+    demo: {
+      src: "/videos/erp-demonstracao.gif",
+      alt: "Demonstração animada do ERP: login, dashboard, cadastros, estoque, vendas, ordem de serviço, financeiro, backup e tema escuro",
+      caption:
+        "Passeio de cerca de 20 segundos: login, dashboard, cadastros, estoque, vendas, ordem de serviço, financeiro, backup e tema escuro.",
+    },
     evidenceNote:
-      "As capturas reais do dashboard, clientes e ordem de serviço serão adicionadas depois da anonimização dos dados.",
+      "Todas as imagens usam a base de demonstração, com dados 100% fictícios.",
+    repositoryUrl:
+      "https://github.com/flavioZaccheroni/Projeto-CRM---Autopecas-e-Servicos",
+    test: {
+      version: "3.0.1",
+      downloadUrl:
+        "https://github.com/flavioZaccheroni/Projeto-CRM---Autopecas-e-Servicos/releases/download/v3.0.1/ERP_Autopecas_3.0.1_windows.zip",
+      releaseUrl:
+        "https://github.com/flavioZaccheroni/Projeto-CRM---Autopecas-e-Servicos/releases/tag/v3.0.1",
+      fileName: "ERP_Autopecas_3.0.1_windows.zip",
+      sizeLabel: "cerca de 49 MB",
+      logins: [
+        { profile: "Administrador", user: "admin", password: "Demo@1234" },
+        {
+          profile: "Vendedor (perfil restrito)",
+          user: "vendedor",
+          password: "Demo@1234",
+        },
+      ],
+      requirements: [
+        "Windows 10 ou 11",
+        "Sem instalação: basta extrair a pasta",
+      ],
+      steps: [
+        "Baixe o arquivo e extraia a pasta ERP_Autopecas.",
+        "Abra ERP_Autopecas.exe.",
+        "Entre com um dos acessos de demonstração.",
+      ],
+    },
     featured: true,
   },
   {
-    slug: "sistema-nutricionistas",
-    name: "Sistema para Nutricionistas",
-    category: "Saúde e acompanhamento",
+    slug: "kit-saas-brasil",
+    name: "Kit SaaS em Português",
+    category: "Produto de software",
     shortDescription:
-      "Pacientes, avaliações e planos alimentares em uma experiência integrada.",
+      "Base para lançar um SaaS no Brasil: login, painel, cobrança com Pix e LGPD.",
     description:
-      "Solução multiplataforma para apoiar nutricionistas no acompanhamento organizado da evolução de seus pacientes.",
+      "Projeto base em Next.js que reúne o que quase todo SaaS brasileiro precisa antes do primeiro cliente: autenticação, painel, cobrança recorrente com Pix e cartão, páginas e fluxos de LGPD, e-mail e deploy, com guia em português.",
     problem:
-      "Dados clínicos, avaliações e planos alimentares distribuídos em ferramentas diferentes tornam o acompanhamento lento e pouco consistente.",
+      "Quem lança um SaaS para o Brasil gasta semanas refazendo o mesmo trabalho: login e papéis, cobrança em Pix (com avisos repetidos e fora de ordem), LGPD e deploy.",
     solution:
-      "Centralização do histórico do paciente, avaliações e planejamento alimentar com acesso seguro em diferentes dispositivos.",
+      "Um projeto base organizado e documentado, com a cobrança brasileira e a LGPD já resolvidas, para o desenvolvedor focar no que é único do produto dele.",
     objective:
-      "Oferecer ao profissional uma visão contínua da evolução do paciente, reduzindo a fragmentação de informações entre consultas.",
-    audience: "Nutricionistas autônomos e pequenas clínicas.",
+      "Reduzir de semanas para dias o caminho entre a ideia e o primeiro cliente pagante de um SaaS no mercado brasileiro.",
+    audience:
+      "Desenvolvedores e freelancers que vão lançar um SaaS para o mercado brasileiro.",
     currentStage:
-      "O domínio, os principais módulos e a arquitetura foram definidos. As rotinas clínicas seguem em desenvolvimento e validação.",
+      "Em desenvolvimento, com documentação em 8 guias e fase de validação. Sem versão para download.",
     status: "em-desenvolvimento",
-    technologies: ["Flutter", "Dart", "Supabase", "PostgreSQL"],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "Supabase",
+      "Tailwind",
+      "Asaas",
+    ],
     features: [
-      "Cadastro e histórico de pacientes",
-      "Avaliações antropométricas",
-      "Planos alimentares",
-      "Acompanhamento de evolução",
+      "Login, cadastro e recuperação de senha, com papéis",
+      "Esquema de banco de dados e migrações",
+      "Assinatura recorrente com Pix e cartão (Asaas), com webhooks idempotentes",
+      "Modelos de LGPD: consentimento, exportação de dados e exclusão de conta",
+      "Painel com tema claro e escuro",
+      "E-mails transacionais",
+      "Landing page em português",
+      "Guia de deploy (Vercel e Supabase)",
+    ],
+    challenges: [
+      "Cobrança recorrente em Pix: status que chegam fora de ordem e avisos repetidos.",
+      "Autorização feita na aplicação, com o banco como segunda camada de segurança.",
+      "Manter o código simples de ler e de adaptar.",
     ],
     architecture: [
       {
-        title: "Aplicação Flutter",
+        title: "Aplicação",
         description:
-          "Uma base de interface compartilhada para evoluir a experiência em diferentes dispositivos.",
+          "Next.js (App Router) e TypeScript, com rotas públicas, área autenticada e rotas de API para webhooks.",
       },
       {
-        title: "Serviços de domínio",
+        title: "Dados e autenticação",
         description:
-          "Regras de avaliações, acompanhamento e planos separadas dos componentes visuais.",
+          "Prisma sobre Postgres e Supabase Auth, com políticas de segurança do banco como camada extra.",
       },
       {
-        title: "Supabase",
+        title: "Cobrança e e-mail",
         description:
-          "PostgreSQL, autenticação e políticas de acesso planejados como infraestrutura do produto.",
+          "Integração com o Asaas para Pix e cartão e envio de e-mails transacionais pelo Resend.",
       },
     ],
     decisions: [
       {
-        title: "Multiplataforma",
+        title: "Webhooks idempotentes",
         description:
-          "Flutter reduz duplicação e permite testar a experiência em mais de um formato de tela.",
+          "O mesmo aviso de pagamento nunca é processado duas vezes, e a assinatura do aviso é validada.",
       },
       {
-        title: "Privacidade desde o modelo",
+        title: "Textos legais como modelos",
         description:
-          "Informações clínicas exigem autenticação, separação por profissional e políticas de acesso restritivas.",
+          "Política de privacidade e termos acompanham o projeto como modelos para revisão jurídica, não como aconselhamento.",
+      },
+      {
+        title: "Dependências fixadas",
+        description:
+          "As versões são fixas para que o projeto continue reproduzível ao longo do tempo.",
       },
     ],
     results: [
-      "Escopo dos módulos clínicos organizado",
-      "Fluxo de acompanhamento do paciente definido",
-      "Modelo inicial de avaliações e planos estruturado",
-      "Diretrizes de privacidade incorporadas à arquitetura",
-    ],
-    challenges: [
-      "Modelar dados clínicos com clareza",
-      "Criar uma interface eficiente em telas diferentes",
-      "Proteger informações sensíveis",
+      "Guia em português com 8 partes, do primeiro passo ao deploy",
+      "Testes automatizados de exemplo",
+      "Estrutura pronta para cobrança, LGPD e e-mail",
     ],
     learnings: [
-      "O histórico precisa ser fácil de consultar durante a rotina profissional.",
-      "Dados clínicos não devem ser usados em demonstrações públicas.",
-      "O modelo de permissões precisa nascer junto com o modelo de dados.",
+      "A cobrança em Pix tem armadilhas que só aparecem com avisos repetidos e fora de ordem.",
+      "Documentar em português reduz a barreira para quem está começando.",
     ],
     nextSteps: [
-      "Implementar autenticação por perfis",
-      "Concluir relatórios de evolução",
-      "Preparar versão de testes com pacientes fictícios",
-    ],
-    screenshots: [
-      {
-        src: "/projects/sistema-nutricionistas/01-login.png",
-        alt: "Tela de acesso do Nutri Clinic Pro",
-        caption: "Entrada segura no ambiente de acompanhamento nutricional.",
-      },
-      {
-        src: "/projects/sistema-nutricionistas/02-dashboard.png",
-        alt: "Dashboard do Nutri Clinic Pro",
-        caption: "Resumo da rotina clínica e dos acompanhamentos.",
-      },
-      {
-        src: "/projects/sistema-nutricionistas/03-pacientes.png",
-        alt: "Tela de pacientes do Nutri Clinic Pro",
-        caption: "Cadastro e consulta dos pacientes acompanhados.",
-      },
-      {
-        src: "/projects/sistema-nutricionistas/04-agenda.png",
-        alt: "Agenda de atendimentos do Nutri Clinic Pro",
-        caption: "Organização das consultas e dos compromissos clínicos.",
-      },
-      {
-        src: "/projects/sistema-nutricionistas/05-antropometria.png",
-        alt: "Tela de avaliação antropométrica do Nutri Clinic Pro",
-        caption:
-          "Registro das medidas utilizadas no acompanhamento da evolução.",
-      },
-      {
-        src: "/projects/sistema-nutricionistas/06-plano-alimentar.png",
-        alt: "Tela de plano alimentar do Nutri Clinic Pro",
-        caption: "Montagem e organização do planejamento alimentar.",
-      },
-      {
-        src: "/projects/sistema-nutricionistas/07-protocolos-clinicos.png",
-        alt: "Tela de protocolos clínicos do Nutri Clinic Pro",
-        caption: "Consulta e aplicação dos protocolos de acompanhamento.",
-      },
-    ],
-    evidenceNote:
-      "As telas serão publicadas somente com perfis e avaliações inteiramente fictícios.",
-    featured: true,
-  },
-  {
-    slug: "logistica-pequenos-negocios",
-    name: "Logística para Pequenos Negócios",
-    category: "Logística e operações",
-    shortDescription:
-      "Apoio ao controle de entregas, estoque e rotina operacional local.",
-    description:
-      "Projeto que transforma experiência prática em logística em uma ferramenta simples para acompanhar operações de pequenos negócios.",
-    problem:
-      "Operações locais costumam depender de anotações e planilhas desconectadas, reduzindo a visibilidade de estoque e entregas.",
-    solution:
-      "Um fluxo direto para registrar movimentações, acompanhar entregas e visualizar prioridades da operação.",
-    objective:
-      "Dar visibilidade ao que entrou, ao que precisa ser entregue e às pendências que exigem ação durante o dia.",
-    audience: "Pequenos comércios e operações locais de distribuição.",
-    currentStage:
-      "O fluxo acadêmico está em testes com cenários operacionais. Os indicadores e a versão web ainda serão evoluídos.",
-    status: "em-testes",
-    technologies: ["JavaScript", "TypeScript", "SQL", "UX"],
-    features: [
-      "Controle de entradas e saídas",
-      "Acompanhamento de entregas",
-      "Visão de pendências",
-      "Indicadores operacionais",
-    ],
-    architecture: [
-      {
-        title: "Registro operacional",
-        description:
-          "Entradas, saídas e entregas formam a base de dados do acompanhamento diário.",
-      },
-      {
-        title: "Camada de serviço",
-        description:
-          "Regras de status e prioridade transformam registros em informações acionáveis.",
-      },
-      {
-        title: "Visão gerencial",
-        description:
-          "Painéis resumem pendências e ajudam a identificar riscos de prazo.",
-      },
-    ],
-    decisions: [
-      {
-        title: "Fluxos curtos",
-        description:
-          "A ferramenta precisa funcionar durante a operação, sem exigir preenchimentos extensos.",
-      },
-      {
-        title: "Indicadores acionáveis",
-        description:
-          "A prioridade é mostrar pendências e prazos, não acumular gráficos sem decisão associada.",
-      },
-    ],
-    results: [
-      "Processo de entradas e saídas mapeado",
-      "Estados de entrega e pendência definidos",
-      "Cenários acadêmicos preparados para testes",
-      "Indicadores prioritários identificados",
-    ],
-    challenges: [
-      "Traduzir processos reais em fluxos simples",
-      "Priorizar informação sem sobrecarregar a tela",
-      "Manter o registro rápido durante a rotina operacional",
-    ],
-    learnings: [
-      "Um indicador só é útil quando orienta uma ação.",
-      "A experiência operacional ajuda a identificar exceções antes da implementação.",
-      "Pequenos negócios precisam de adoção simples e baixo custo de operação.",
-    ],
-    nextSteps: [
-      "Ampliar testes com cenários reais anonimizados",
-      "Implementar indicadores de prazo",
-      "Preparar uma versão web demonstrável",
+      "Concluir a validação com testadores",
+      "Revisar a documentação a partir do retorno",
+      "Preparar o lançamento",
     ],
     screenshots: [],
     evidenceNote:
-      "Os exemplos visuais serão produzidos com uma operação fictícia, sem dados comerciais reais.",
+      "Capturas do painel e da página inicial serão adicionadas quando houver uma versão pronta para mostrar.",
+    codeNote:
+      "O código ainda não é público. Se quiser conhecer o projeto, entre em contato.",
+    featured: true,
+  },
+  {
+    slug: "app-do-caminhoneiro",
+    name: "App do Caminhoneiro (Frete + MEI)",
+    category: "Aplicativo móvel",
+    shortDescription:
+      "App Android que mostra ao caminhoneiro autônomo quanto sobrou de cada viagem e avisa quando o MEI precisa de atenção.",
+    description:
+      "Aplicativo para o caminhoneiro autônomo registrar viagens e despesas, ver o lucro por viagem e por quilômetro, simular se um frete compensa e acompanhar o faturamento do MEI, funcionando mesmo sem internet.",
+    problem:
+      "O motorista autônomo costuma saber quanto recebeu, mas não quanto sobrou depois de diesel, pedágio e manutenção, e corre o risco de estourar o limite do MEI sem perceber.",
+    solution:
+      "Lançamento de gastos em poucos toques, resultado calculado por viagem, simulador de frete contra o custo por km do motorista e alertas de limite do MEI e de vencimentos.",
+    objective:
+      "Dar ao caminhoneiro autônomo clareza sobre o resultado de cada viagem e sobre a situação do MEI, mesmo sem sinal de internet.",
+    audience: "Caminhoneiros autônomos, principalmente MEI.",
+    currentStage:
+      "Fase inicial (fundação): estrutura do aplicativo e esquema do banco local prontos. Telas e fluxos ainda em construção. Sem versão para teste.",
+    extraNotice:
+      "As informações do app são estimativas e não substituem um contador.",
+    status: "em-desenvolvimento",
+    technologies: ["Expo (React Native)", "TypeScript", "SQLite", "Supabase"],
+    features: [
+      "Viagens e despesas (diesel, pedágio, alimentação, manutenção), com foto opcional do comprovante",
+      "Resultado da viagem e lucro por quilômetro",
+      "Simulador de frete",
+      "Painel do mês",
+      "MEI: faturamento acumulado, percentual do limite e lembretes de DAS e declaração",
+      "Histórico e relatórios",
+      "Funcionamento offline, com sincronização quando houver internet",
+    ],
+    challenges: [
+      "Funcionar offline e sincronizar depois, sem perder lançamentos.",
+      "Dinheiro em centavos e lucro sempre calculado, nunca gravado.",
+      "Regras do MEI configuráveis e vindas de fonte oficial.",
+      "Privacidade: nenhum dado de localização é coletado.",
+    ],
+    architecture: [
+      {
+        title: "Aplicativo",
+        description:
+          "Expo (React Native) com TypeScript, pensado primeiro para Android.",
+      },
+      {
+        title: "Banco no celular",
+        description:
+          "SQLite como fonte de leitura e escrita da interface, para funcionar sem internet.",
+      },
+      {
+        title: "Servidor",
+        description:
+          "Supabase (autenticação, Postgres e arquivos) com segurança por linha: cada usuário só acessa os próprios dados.",
+      },
+    ],
+    decisions: [
+      {
+        title: "Offline primeiro",
+        description:
+          "Toda leitura e escrita da interface é no SQLite do aparelho; a sincronização acontece depois.",
+      },
+      {
+        title: "Ids e exclusão lógica",
+        description:
+          "Identificadores gerados no celular e exclusão lógica, para sincronizar sem conflitos.",
+      },
+      {
+        title: "Escopo enxuto",
+        description:
+          "O MVP deixa de fora, de propósito, busca de fretes, GPS, integração bancária e versão para iOS.",
+      },
+    ],
+    results: [
+      "Escopo do MVP, modelo de dados e etapas definidos",
+      "Projeto Expo configurado, com o esquema do banco local",
+    ],
+    learnings: [
+      "Definir o que fica fora do MVP é tão importante quanto o que entra.",
+      "Regras fiscais precisam vir de fonte oficial e ficar configuráveis.",
+    ],
+    nextSteps: [
+      "Login e gravação offline",
+      "Viagem e despesas",
+      "Resultado e painel do mês",
+      "Módulo MEI",
+      "Sincronização e teste com motoristas",
+    ],
+    screenshots: [],
+    evidenceNote:
+      "Ainda não há telas para mostrar: o aplicativo está na fase de fundação.",
+    codeNote:
+      "O código ainda não é público. Se quiser conhecer o projeto, entre em contato.",
     featured: true,
   },
 ];

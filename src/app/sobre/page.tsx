@@ -22,7 +22,7 @@ const story = [
   {
     icon: Workflow,
     title: "Combinação prática",
-    text: "Hoje aplico as duas perspectivas: começo entendendo o processo e desenvolvo a solução em etapas que possam ser testadas e evoluídas.",
+    text: "Hoje aplico as duas perspectivas: começo entendendo o processo e desenvolvo a solução em etapas que possam ser testadas e evoluídas. Tenho o hábito de entregar versões testáveis, com testes automatizados, integração contínua e releases publicados.",
   },
 ];
 
@@ -39,21 +39,26 @@ export default function AboutPage() {
           {story.map((item) => (
             <article
               key={item.title}
-              className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm"
+              className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900"
             >
-              <item.icon aria-hidden="true" className="h-8 w-8 text-blue-600" />
-              <h2 className="mt-8 text-xl font-bold text-slate-950">
+              <item.icon
+                aria-hidden="true"
+                className="h-8 w-8 text-blue-600 dark:text-blue-400"
+              />
+              <h2 className="mt-8 text-xl font-bold text-slate-950 dark:text-white">
                 {item.title}
               </h2>
-              <p className="mt-3 leading-7 text-slate-600">{item.text}</p>
+              <p className="mt-3 leading-7 text-slate-600 dark:text-slate-400">
+                {item.text}
+              </p>
             </article>
           ))}
         </div>
-        <section className="mt-16 rounded-3xl bg-[#F4F7FB] p-7 sm:p-10">
-          <h2 className="text-2xl font-bold text-slate-950">
+        <section className="mt-16 rounded-3xl bg-[#F4F7FB] p-7 sm:p-10 dark:bg-slate-900">
+          <h2 className="text-2xl font-bold text-slate-950 dark:text-white">
             O que procuro construir
           </h2>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-400">
             Sistemas claros, seguros e úteis — principalmente em contextos onde
             organizar informação pode reduzir retrabalho, apoiar decisões e
             melhorar a experiência de quem executa o processo todos os dias.
