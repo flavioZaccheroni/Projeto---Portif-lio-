@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useId, useState } from "react";
-import { Download, KeyRound, ShieldAlert } from "lucide-react";
+import { Download, KeyRound, Monitor, ShieldAlert } from "lucide-react";
 import { TEST_PERIOD_DAYS } from "@/data/projects";
 import type { Project } from "@/types/project";
 
@@ -81,6 +81,21 @@ export function DownloadGate({ test }: { test: TestInfo }) {
           por este site ou pelo GitHub oficial do autor. Se for bloqueado, o
           código-fonte pode ser executado com Python (instruções no
           repositório).
+        </p>
+      </div>
+
+      <div
+        role="note"
+        className="mt-8 flex gap-3 rounded-xl border border-blue-300 bg-white p-4 text-sm leading-6 text-slate-800 md:hidden dark:border-blue-500/40 dark:bg-slate-900 dark:text-slate-200"
+      >
+        <Monitor
+          aria-hidden="true"
+          className="mt-0.5 h-5 w-5 shrink-0 text-blue-700 dark:text-blue-300"
+        />
+        <p>
+          <strong>Baixe pelo computador.</strong> O aplicativo é para Windows e
+          não roda no celular. Se preferir, abra esta página no PC para baixar e
+          testar.
         </p>
       </div>
 
