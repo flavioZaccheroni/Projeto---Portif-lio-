@@ -39,12 +39,12 @@ export const projects: Project[] = [
       "Cadastros de clientes, veículos, fornecedores, categorias, marcas e produtos, com validação de CPF/CNPJ, placa, UF e telefone",
       "Estoque com histórico de movimentações e alerta de estoque mínimo",
       "Compras com entrada no estoque e conta a pagar parcelável; cancelamento com estorno",
-      "Vendas: orçamento, aprovação e venda, com parcelamento e forma de pagamento",
-      "Ordens de serviço com peças e mão de obra, finalização com baixa e financeiro, impressão em PDF",
+      "Vendas: orçamento, aprovação e venda, com desconto e acréscimo (limite por perfil), parcelamento, forma de pagamento e PDF de orçamento e comprovante",
+      "Ordens de serviço com peças, catálogo de serviços e mecânico responsável, finalização com baixa e financeiro, impressão em PDF com logo da empresa",
       "Financeiro: contas a pagar e a receber, baixa, estorno e caixa",
       "Relatórios em PDF e Excel",
       "Dashboard com indicadores e gráficos; tema claro e escuro; paleta de comandos (Ctrl+K)",
-      "Segurança: perfis e permissões, troca de senha obrigatória, bloqueio por tentativas, auditoria, backup e restauração validados",
+      "Segurança: perfis e permissões, troca de senha obrigatória, bloqueio por tentativas, auditoria, backup automático (com cópia em outra pasta) e restauração validados",
     ],
     challenges: [
       "Manter estoque e financeiro consistentes quando uma venda, compra ou OS é criada, alterada ou cancelada.",
@@ -92,8 +92,8 @@ export const projects: Project[] = [
       },
     ],
     results: [
-      "101 testes automatizados, lint com ruff e CI no GitHub Actions",
-      "4 releases publicados, de v2.0.0 a v3.0.1",
+      "136 testes automatizados, lint com ruff e CI no GitHub Actions",
+      "6 releases publicados, de v2.0.0 a v3.2.0",
       "Interface totalmente nova em PySide6, com tema claro e escuro",
       "Pacote Windows com base de demonstração fictícia incluída",
     ],
@@ -104,7 +104,7 @@ export const projects: Project[] = [
     ],
     nextSteps: [
       "Assinatura de código do executável",
-      "Instalador para Windows",
+      "Instalador para Windows e licença com período de teste",
       "Uso em rede com vários usuários",
     ],
     screenshots: [
@@ -180,12 +180,12 @@ export const projects: Project[] = [
     repositoryUrl:
       "https://github.com/flavioZaccheroni/Projeto-CRM---Autopecas-e-Servicos",
     test: {
-      version: "3.0.1",
+      version: "3.2.0",
       downloadUrl:
-        "https://github.com/flavioZaccheroni/Projeto-CRM---Autopecas-e-Servicos/releases/download/v3.0.1/ERP_Autopecas_3.0.1_windows.zip",
+        "https://github.com/flavioZaccheroni/Projeto-CRM---Autopecas-e-Servicos/releases/download/v3.2.0/ERP_Autopecas_3.2.0_windows.zip",
       releaseUrl:
-        "https://github.com/flavioZaccheroni/Projeto-CRM---Autopecas-e-Servicos/releases/tag/v3.0.1",
-      fileName: "ERP_Autopecas_3.0.1_windows.zip",
+        "https://github.com/flavioZaccheroni/Projeto-CRM---Autopecas-e-Servicos/releases/tag/v3.2.0",
+      fileName: "ERP_Autopecas_3.2.0_windows.zip",
       sizeLabel: "cerca de 49 MB",
       logins: [
         { profile: "Administrador", user: "admin", password: "Demo@1234" },
