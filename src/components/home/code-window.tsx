@@ -31,15 +31,15 @@ export function CodeWindow() {
           </span>
           {";\n  "}
           <span className="text-blue-300">abordagem</span>
-          {": ["}
+          {": [\n    "}
           <span className="text-emerald-300">&quot;Entender&quot;</span>
           {", "}
           <span className="text-emerald-300">&quot;Organizar&quot;</span>
-          {", "}
+          {",\n    "}
           <span className="text-emerald-300">&quot;Desenvolver&quot;</span>
           {", "}
           <span className="text-emerald-300">&quot;Validar&quot;</span>
-          {"];\n"}
+          {"\n  ];\n"}
           {"}"}
           {";\n\n"}
           <span className="text-slate-500">

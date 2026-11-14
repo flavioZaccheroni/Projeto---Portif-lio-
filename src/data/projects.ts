@@ -23,7 +23,7 @@ export const projects: Project[] = [
     audience:
       "Autopeças, oficinas e pequenos prestadores de serviços automotivos.",
     currentStage:
-      "Versão 3.0 concluída e testada, pronta para avaliação com dados de demonstração. Próximos passos: assinatura digital do executável e instalador.",
+      "Versão 3.2 concluída e testada, pronta para avaliação com dados de demonstração. Em preparo para a 3.3: instalador e licença com período de teste já desenvolvidos; falta a assinatura digital do executável.",
     status: "disponivel-para-teste",
     technologies: [
       "Python",
@@ -92,7 +92,7 @@ export const projects: Project[] = [
       },
     ],
     results: [
-      "136 testes automatizados, lint com ruff e CI no GitHub Actions",
+      "Mais de 150 testes automatizados, lint com ruff e CI no GitHub Actions",
       "6 releases publicados, de v2.0.0 a v3.2.0",
       "Interface totalmente nova em PySide6, com tema claro e escuro",
       "Pacote Windows com base de demonstração fictícia incluída",
@@ -104,7 +104,7 @@ export const projects: Project[] = [
     ],
     nextSteps: [
       "Assinatura de código do executável",
-      "Instalador para Windows e licença com período de teste",
+      "Publicar a 3.3: instalador para Windows e licença com período de teste (já desenvolvidos)",
       "Uso em rede com vários usuários",
     ],
     screenshots: [
