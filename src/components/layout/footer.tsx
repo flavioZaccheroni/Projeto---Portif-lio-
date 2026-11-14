@@ -1,9 +1,14 @@
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { Container } from "@/components/ui/container";
 
 const socialLinks = [
+  {
+    icon: Mail,
+    label: "E-mail",
+    href: "mailto:contato@flaviozaccheroni.com.br",
+  },
   {
     icon: Linkedin,
     label: "LinkedIn",
@@ -33,8 +38,9 @@ export function Footer() {
               <a
                 key={social.label}
                 href={social.href}
-                target="_blank"
-                rel="noreferrer"
+                {...(social.href.startsWith("mailto:")
+                  ? {}
+                  : { target: "_blank", rel: "noreferrer" })}
                 aria-label={social.label}
                 className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 text-blue-100 transition hover:border-white/40 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
               >
