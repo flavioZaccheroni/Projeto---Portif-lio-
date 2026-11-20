@@ -26,6 +26,38 @@ const story = [
   },
 ];
 
+const education = [
+  {
+    title: "AI Driven Development",
+    institution: "Formação DEV (Cod3r)",
+    period: "Desde 11/2026",
+    inProgress: true,
+    description:
+      "Trilha de 14 cursos sobre desenvolvimento com IA: agentes, MCP, Skills, engenharia de contexto e arquitetura de software.",
+  },
+  {
+    title: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+    institution: "UNINTER (EAD)",
+    period: "10/2023 – 06/2026",
+    inProgress: false,
+    description: "",
+  },
+  {
+    title: "Tecnólogo em Logística",
+    institution: "Cesumar, Três Lagoas - MS",
+    period: "2014 – 2016",
+    inProgress: false,
+    description: "",
+  },
+  {
+    title: "Inglês",
+    institution: "CNA",
+    period: "2018 · nível básico",
+    inProgress: false,
+    description: "",
+  },
+];
+
 export default function AboutPage() {
   return (
     <main className="py-16 sm:py-20">
@@ -54,6 +86,41 @@ export default function AboutPage() {
             </article>
           ))}
         </div>
+        <section className="mt-16" aria-labelledby="formacao-titulo">
+          <h2
+            id="formacao-titulo"
+            className="text-2xl font-bold text-slate-950 dark:text-white"
+          >
+            Formação e cursos
+          </h2>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+            {education.map((item) => (
+              <li
+                key={item.title}
+                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+              >
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <h3 className="font-bold text-slate-950 dark:text-white">
+                    {item.title}
+                  </h3>
+                  {item.inProgress && (
+                    <span className="inline-flex rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-800 ring-1 ring-inset ring-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:ring-amber-500/30">
+                      Em andamento
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                  {item.institution} · {item.period}
+                </p>
+                {item.description && (
+                  <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    {item.description}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
         <section className="mt-16 rounded-3xl bg-[#F4F7FB] p-7 sm:p-10 dark:bg-slate-900">
           <h2 className="text-2xl font-bold text-slate-950 dark:text-white">
             O que procuro construir
