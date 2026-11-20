@@ -36,17 +36,15 @@ pnpm preview
 - `src/components`: componentes de layout, projetos e interface
 - `src/data/projects.ts`: fonte única do catálogo
 - `src/types/project.ts`: contrato tipado de cada projeto
-- `public/images/projects`: capturas de tela futuras
-- `public/documents`: currículo e outros documentos públicos futuros
+- `public/projects`: capturas de tela e demonstração de cada projeto
+- `public/documents`: currículo em PDF (`curriculo-flavio-zaccheroni.pdf`)
 - `public/.htaccess`: configuração do Apache (HTTPS, cache e página 404) usada na Hostinger
 
-## Conteúdo pendente antes da publicação
+## Status do conteúdo
 
-1. Confirmar e-mail profissional, LinkedIn e GitHub.
-2. Adicionar currículo em PDF.
-3. Inserir capturas de tela com dados fictícios e textos alternativos.
-4. Publicar URLs oficiais de repositório, demonstração e download.
-5. Definir `NEXT_PUBLIC_SITE_URL` com o domínio de produção.
+- Concluído: e-mail profissional, LinkedIn e GitHub, currículo em PDF, capturas e download do ERP, formação e cursos na página Sobre.
+- Domínio de produção: defina `NEXT_PUBLIC_SITE_URL` (por exemplo, em `.env.production.local`, que não é versionado) antes de gerar o build final.
+- Pendente: capturas de tela do Kit SaaS e do App do Caminhoneiro, quando houver versão para mostrar.
 
 Não publique bancos, arquivos `.env`, chaves, tokens, credenciais ou dados reais de clientes.
 

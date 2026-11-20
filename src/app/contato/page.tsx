@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { FileText, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -26,6 +26,12 @@ const contacts = [
     label: "GitHub",
     value: "github.com/flavioZaccheroni",
     href: "https://github.com/flavioZaccheroni",
+  },
+  {
+    icon: FileText,
+    label: "Currículo",
+    value: "Baixar em PDF",
+    href: "/documents/curriculo-flavio-zaccheroni.pdf",
   },
   {
     icon: MapPin,
